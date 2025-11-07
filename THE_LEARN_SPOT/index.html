@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Learning & Exam Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .particle {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+
+        .form-group:hover {
+            transform: translateX(5px);
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label::before {
+            content: '✦';
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .subject-checkbox {
+            display: none;
+        }
+
+        .subject-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-label::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .subject-label:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .subject-icon {
+            font-size: 2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subject-checkbox:checked + .subject-label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 12px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-secondary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(108, 117, 125, 0.5);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(-1px);
+        }
+
+        .back-button-top {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .back-button-top:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-button-top:active {
+            transform: translateY(0);
+        }
+
+        .redirect-info {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .redirect-info h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .redirect-path {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .redirect-path strong {
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .subjects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <h1>📚 Personalized Learning Platform</h1>
+            <p>Your journey to academic excellence starts here</p>
+        </div> 
+
+
+        <div class="content">
+            <div id="setup-section" class="section active">
+                <h2 style="margin-bottom: 35px; color: #333; text-align: center;">Let's Set Up Your Learning Path</h2>
+                
+                <div class="form-group">
+                    <label for="grade">Select Your Grade</label>
+                    <select id="grade" onchange="toggleExamField()">
+                        <option value="">Choose your grade...</option>
+                        <option value="6">Grade 6</option>
+                        <option value="7">Grade 7</option>
+                        <option value="8">Grade 8</option>
+                        <option value="9">Grade 9</option>
+                        <option value="10">Grade 10</option>
+                        <option value="11">Grade 11</option>
+                        <option value="12">Grade 12</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="exam-group" style="display: none;">
+                    <label for="exam">Target Exam <span style="color: #dc3545; font-weight: bold;">(Required for Grade 11-12)</span></label>
+                    <select id="exam">
+                        <option value="">Select target exam...</option>
+                        <option value="jee">JEE (Main & Advanced)</option>
+                        <option value="neet">NEET</option>
+                        <option value="boards">Board Exams</option>
+                        <option value="olympiad">Olympiad</option>
+                        <option value="sat">SAT</option>
+                        <option value="act">ACT</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="exam-optional-group">
+                    <label for="exam-optional">Target Exam (Optional)</label>
+                    <select id="exam-optional">
+                        <option value="">None - Just learning for school</option>
+                        <option value="jee">JEE (Main & Advanced)</option>
+                        <option value="neet">NEET</option>
+                        <option value="boards">Board Exams</option>
+                        <option value="olympiad">Olympiad</option>
+                        <option value="sat">SAT</option>
+                        <option value="act">ACT</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Subjects</label>
+                    <div class="subjects-grid" id="subjects-container">
+                        <div>
+                            <input type="checkbox" id="all-subjects" class="subject-checkbox" value="all" onchange="toggleAllSubjects()">
+                            <label for="all-subjects" class="subject-label">
+                                <span class="subject-icon">✨</span>
+                                <span>All</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="physics" class="subject-checkbox individual-subject" value="physics" onchange="checkAllSelected()">
+                            <label for="physics" class="subject-label">
+                                <span class="subject-icon">⚛</span>
+                                <span>Physics</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="chemistry" class="subject-checkbox individual-subject" value="chemistry" onchange="checkAllSelected()">
+                            <label for="chemistry" class="subject-label">
+                                <span class="subject-icon">🧪</span>
+                                <span>Chemistry</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="mathematics" class="subject-checkbox individual-subject" value="mathematics" onchange="checkAllSelected()">
+                            <label for="mathematics" class="subject-label">
+                                <span class="subject-icon">📐</span>
+                                <span>Mathematics</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="biology" class="subject-checkbox individual-subject" value="biology" onchange="checkAllSelected()">
+                            <label for="biology" class="subject-label">
+                                <span class="subject-icon">🧬</span>
+                                <span>Biology</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="english" class="subject-checkbox individual-subject" value="english" onchange="checkAllSelected()">
+                            <label for="english" class="subject-label">
+                                <span class="subject-icon">📖</span>
+                                <span>English</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="history" class="subject-checkbox individual-subject" value="history" onchange="checkAllSelected()">
+                            <label for="history" class="subject-label">
+                                <span class="subject-icon">🏛</span>
+                                <span>History</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="others" class="subject-checkbox individual-subject" value="others" onchange="checkAllSelected()">
+                            <label for="others" class="subject-label">
+                                <span class="subject-icon">📚</span>
+                                <span>Others</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn" onclick="startLearning()">Start Learning Journey 🚀</button>
+                </div>
+            </div>
+
+            <div id="redirect-section" class="section">
+                <div class="redirect-info">
+                    <h2>Preparing Your Personalized Content...</h2>
+                    <div class="spinner"></div>
+                    <div id="redirect-details"></div>
+                    <p style="color: #6c757d; margin-top: 20px;">You will be redirected in <span id="countdown">3</span> seconds...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createParticles() {
+            const colors = ['rgba(255, 255, 255, 0.1)', 'rgba(102, 126, 234, 0.1)', 'rgba(118, 75, 162, 0.1)'];
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 50 + 20 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        function toggleExamField() {
+            const grade = parseInt(document.getElementById('grade').value);
+            const examGroup = document.getElementById('exam-group');
+            const examOptional = document.getElementById('exam-optional-group');
+            
+            if (grade > 10) {
+                examGroup.style.display = 'block';
+                examOptional.style.display = 'none';
+            } else {
+                examGroup.style.display = 'none';
+                examOptional.style.display = 'block';
+                document.getElementById('exam').value = '';
+            }
+        }
+
+        function toggleAllSubjects() {
+            const allCheckbox = document.getElementById('all-subjects');
+            const individualCheckboxes = document.querySelectorAll('.individual-subject');
+            
+            individualCheckboxes.forEach(checkbox => {
+                checkbox.checked = allCheckbox.checked;
+            });
+        }
+
+        function checkAllSelected() {
+            const allCheckbox = document.getElementById('all-subjects');
+            const individualCheckboxes = document.querySelectorAll('.individual-subject');
+            const allChecked = Array.from(individualCheckboxes).every(cb => cb.checked);
+            
+            allCheckbox.checked = allChecked;
+        }
+
+        // Simplified naming convention using hyphens
+        function generateFileName(grade, exam, subjects) {
+            // Format: grade{X}-{exam}-{subject1}-{subject2}.html
+            // Example: grade11-jee-physics-mathematics.html
+            
+            const parts = ['grade' + grade];
+            
+            if (exam) {
+                parts.push(exam);
+            }
+            
+            parts.push(...subjects);
+            
+            return parts.join('-') + '.html';
+        }
+
+        let countdownTimer;
+
+        function startLearning() {
+            const grade = document.getElementById('grade').value;
+            const exam = document.getElementById('exam').value;
+            const examOptional = document.getElementById('exam-optional').value;
+            const checkboxes = document.querySelectorAll('.individual-subject:checked');
+            
+            if (!grade) {
+                alert('Please select your grade!');
+                return;
+            }
+
+            if (parseInt(grade) > 10 && !exam) {
+                alert('Please select a target exam for grades 11 and 12!');
+                return;
+            }
+
+            if (checkboxes.length === 0) {
+                alert('Please select at least one subject!');
+                return;
+            }
+
+            const selectedSubjects = Array.from(checkboxes).map(cb => cb.value);
+            const finalExam = parseInt(grade) > 10 ? exam : (examOptional || 'general');
+            
+            // Generate simple filename
+            const fileName = generateFileName(grade, finalExam, selectedSubjects);
+            const redirectURL = fileName;
+            
+            // Show redirect section
+            document.getElementById('setup-section').classList.remove('active');
+            document.getElementById('redirect-section').classList.add('active');
+            
+            // Display redirect information
+            const detailsHTML = `
+                <div class="redirect-path">
+                    <p><strong>Grade:</strong> ${grade}</p>
+                    <p><strong>Exam:</strong> ${finalExam === 'general' ? 'General Learning' : finalExam.toUpperCase()}</p>
+                    <p><strong>Subjects:</strong> ${selectedSubjects.map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ')}</p>
+                    <p style="margin-top: 15px; font-size: 1em;">
+                        <strong>Target File:</strong><br>
+                        <code style="background: #667eea; color: white; padding: 8px 15px; border-radius: 8px; display: inline-block; margin-top: 8px; font-size: 1.1em;">
+                            ${fileName}
+                        </code>
+                    </p>
+                </div>
+                <p style="color: #28a745; font-weight: 600; margin-top: 15px; font-size: 1.1em;">
+                    ✓ Your personalized learning path has been created!
+                </p>
+                <button class="btn-secondary" onclick="goBackToCourse()">⬅ Back to Course Selection</button>
+            `;
+            
+            document.getElementById('redirect-details').innerHTML = detailsHTML;
+            
+            // Countdown and redirect
+            let countdown = 3;
+            const countdownElement = document.getElementById('countdown');
+            
+            countdownTimer = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                
+                if (countdown === 0) {
+                    clearInterval(countdownTimer);
+                    // Redirect to the generated filename
+                    window.location.href = redirectURL;
+                }
+            }, 1000);
+        }
+
+        function goBackToCourse() {
+            // Clear the countdown timer if it exists
+            if (countdownTimer) {
+                clearInterval(countdownTimer);
+            }
+            
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                countdownElement.textContent = '3';
+            }
+            
+            // Switch back to setup section
+            document.getElementById('redirect-section').classList.remove('active');
+            document.getElementById('setup-section').classList.add('active');
+        }
+
+        function goBackToHome() {
+            // Go back to previous page in browser history
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

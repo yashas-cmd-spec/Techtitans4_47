@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10th Grade English - Previous Year Question Papers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        .back-button-top {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button-top:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 60px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title h2 {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .paper-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            border: 3px solid transparent;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-15px) rotate(-2deg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: #667eea;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .paper-info {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .paper-info strong {
+            color: #667eea;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+            font-size: 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+
+        .video-section {
+            margin-bottom: 50px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: #667eea;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #667eea;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-content {
+            padding: 30px;
+        }
+
+        .video-title {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .watch-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .tips-section {
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            border: 3px solid #667eea;
+        }
+
+        .tips-section h2 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .tips-section ul {
+            list-style: none;
+            padding: 0;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tips-section li {
+            padding: 20px 20px 20px 60px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border-radius: 15px;
+            color: #555;
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tips-section li:hover {
+            transform: translateX(10px);
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        }
+
+        .tips-section li:before {
+            content: '✓';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                margin-top: 70px;
+            }
+
+            .header {
+                padding: 35px 25px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-thumbnail {
+                height: 220px;
+            }
+
+            .tips-section {
+                padding: 35px 25px;
+            }
+
+            .tips-section ul {
+                grid-template-columns: 1fr;
+            }
+
+            .tips-section li {
+                font-size: 0.95rem;
+            }
+
+            .back-button-top {
+                top: 10px;
+                left: 10px;
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .paper-card:nth-child(odd) {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .paper-card:nth-child(even) {
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-button-top">⬅ Back</a>
+
+    <div class="container">
+        <div class="header">
+            <h1>📄 Previous Year Question Papers</h1>
+            <p>Practice with 10th Grade English Board Examination Question Papers</p>
+        </div>
+
+        <div class="section-title">
+            <h2>📚 PDF Question Papers</h2>
+        </div>
+
+        <div class="papers-grid">
+            <div class="paper-card">
+                <div class="year-badge">2024</div>
+                <div class="paper-info">
+                    <strong>Complete Question Paper</strong>
+                    Maximum Marks: 100<br>
+                    Duration: 3 Hours<br>
+                    Karnataka Board
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">2023</div>
+                <div class="paper-info">
+                    <strong>Complete Question Paper</strong>
+                    Maximum Marks: 100<br>
+                    Duration: 3 Hours<br>
+                    Karnataka Board
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">2022</div>
+                <div class="paper-info">
+                    <strong>Complete Question Paper</strong>
+                    Maximum Marks: 100<br>
+                    Duration: 3 Hours<br>
+                    Karnataka Board
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">2021</div>
+                <div class="paper-info">
+                    <strong>Complete Question Paper</strong>
+                    Maximum Marks: 100<br>
+                    Duration: 3 Hours<br>
+                    Karnataka Board
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">2020</div>
+                <div class="paper-info">
+                    <strong>Complete Question Paper</strong>
+                    Maximum Marks: 100<br>
+                    Duration: 3 Hours<br>
+                    Karnataka Board
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">2019</div>
+                <div class="paper-info">
+                    <strong>Complete Question Paper</strong>
+                    Maximum Marks: 100<br>
+                    Duration: 3 Hours<br>
+                    Karnataka Board
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <div class="section-title">
+                <h2>🎥 English Grammar Video Resources</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Tenses - Complete Guide</div>
+                        <div class="video-description">Master all 12 tenses with rules, structures, and examples for perfect understanding</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Active & Passive Voice</div>
+                        <div class="video-description">Learn transformation rules with detailed examples and practice exercises</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Direct & Indirect Speech</div>
+                        <div class="video-description">Complete rules for speech conversion with all types of sentences covered</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Parts of Speech</div>
+                        <div class="video-description">Detailed explanation of noun, pronoun, verb, adjective, adverb, and more</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <div class="section-title">
+                <h2>📖 Literature & Writing Video Resources</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Prose Lessons Summary</div>
+                        <div class="video-description">Detailed summaries and analysis of all prose lessons with key points</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Poetry Analysis</div>
+                        <div class="video-description">Line-by-line explanation, literary devices, and themes of all poems</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Essay Writing Techniques</div>
+                        <div class="video-description">Learn structure, format, and tips for writing impressive essays</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Letter Writing & Applications</div>
+                        <div class="video-description">Formats and samples for formal letters, informal letters, and applications</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h2>💡 Exam Preparation Tips</h2>
+            <ul>
+                <li>Practice previous year papers within the time limit regularly</li>
+                <li>Focus on grammar rules and practice sentence transformation</li>
+                <li>Read comprehension passages carefully and underline key points</li>
+                <li>Improve vocabulary by reading newspapers and novels daily</li>
+                <li>Practice essay writing on various topics with proper structure</li>
+                <li>Learn letter formats for formal and informal correspondence</li>
+                <li>Understand literary devices and their usage in poems</li>
+                <li>Memorize important quotes and character descriptions from lessons</li>
+                <li>Time management is crucial - allocate time for each section</li>
+                <li>Write neatly with proper paragraphing and punctuation</li>
+                <li>Revise grammar topics like tenses, voice, and speech regularly</li>
+                <li>Seek teacher guidance to clarify doubts and improve weak areas</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

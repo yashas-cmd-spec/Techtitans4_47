@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Learn Spot — Personalized Learning & Exam Planner</title>
+  <meta name="description" content="The Learn Spot: Personalized Learning Resources & Exam Planner — study smarter with adaptive plans, curated resources, and progress analytics." />
+  <style>
+    :root{
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --surface: #0b1223;
+      --card: #0c1326;
+      --muted: #9aa4bf;
+      --text: #e5e7eb;
+      --brand: #6366f1;
+      --brand-2: #a855f7;
+      --ring: rgba(99,102,241,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--text); background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(99,102,241,.15), transparent 60%),
+        radial-gradient(1000px 600px at 100% 0%, rgba(168,85,247,.12), transparent 60%),
+        linear-gradient(180deg, #0b1020, #0a0f1d 40%, #090e1a);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1120px; margin:0 auto; padding:0 20px}
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(150%) blur(8px);
+      background:linear-gradient(180deg, rgba(12,15,30,.85), rgba(12,15,30,.55));
+      border-bottom:1px solid rgba(148,163,184,.12);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .logo{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; font-weight:800}
+    nav ul{display:flex; gap:20px; list-style:none; padding:0; margin:0}
+    nav a{opacity:.9}
+    nav a:hover{color:white}
+    .cta{display:flex; gap:10px}
+    .btn{border:1px solid rgba(148,163,184,.2); color:#e5e7eb; padding:10px 14px; border-radius:12px; background:#0d1327}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); border:0; box-shadow:0 0 0 4px var(--ring);}
+    .btn:hover{filter:brightness(1.05)}
+
+    section{padding:72px 0}
+    h1,h2,h3{line-height:1.2; margin:0}
+    h1{font-size: clamp(2rem, 4vw, 3rem)}
+    h2{font-size: clamp(1.5rem, 2.5vw, 2.2rem)}
+    p{margin:.75rem 0}
+    .chip{display:inline-flex; gap:8px; align-items:center; font-size:12px; padding:6px 10px; border-radius:999px; color:#c7d2fe; background:rgba(99,102,241,.12); border:1px solid rgba(99,102,241,.25)}
+
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:32px}
+    .grid-3{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px}
+    .card{background:linear-gradient(180deg, rgba(148,163,184,.06), rgba(2,6,23,.5)); border:1px solid rgba(148,163,184,.18); border-radius:16px; padding:18px}
+    .stat{padding:16px; border:1px solid rgba(148,163,184,.15); border-radius:14px; background:rgba(148,163,184,.05)}
+
+    .feature{display:flex; gap:12px}
+    .feature .badge{width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background:rgba(99,102,241,.18); border:1px solid rgba(99,102,241,.25)}
+
+    .cta-band{border:1px solid rgba(99,102,241,.35); background:linear-gradient(90deg, rgba(99,102,241,.35), rgba(168,85,247,.3)); border-radius:22px; padding:24px}
+
+    form input, form textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(148,163,184,.25); background:#0a1123; color:var(--text);
+      outline:none; transition: box-shadow .2s, border-color .2s
+    }
+    form input:focus, form textarea:focus{box-shadow:0 0 0 4px var(--ring); border-color:var(--brand)}
+
+    footer{border-top:1px solid rgba(148,163,184,.12); padding:24px 0; color:var(--muted); font-size:14px}
+
+    @media (max-width: 960px){
+      .grid-2{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">TL</div>
+        <span>The Learn Spot</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#solution">Solution</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cta">
+        <a class="btn primary" href="#cta">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="container hero" id="home">
+    <div>
+      <span class="chip">★ Personalized Learning Resources & Exam Planner</span>
+      <h1 style="margin-top:12px">Learn smarter with <span style="background:linear-gradient(90deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">The Learn Spot</span></h1>
+      <p style="color:var(--muted); max-width:60ch">We’re an education-first company building a platform that crafts adaptive study paths and a stress‑free exam planner — so every learner can reach goals with clarity, focus, and confidence.</p>
+      <div style="display:flex; gap:12px; margin-top:16px">
+        <a class="btn primary" href="#cta">Try the demo →</a>
+        <a class="btn" href="#how">Watch overview</a>
+      </div>
+      <small style="display:block; margin-top:10px; color:var(--muted)">Made for students, educators, and lifelong learners.</small>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container grid-2">
+      <div>
+        <h2>About our company</h2>
+        <p style="color:var(--muted)"><strong>The Learn Spot</strong> is an education technology company dedicated to making personalized learning accessible. Our mission is to simplify complex study journeys with curated resources and smart planning tools that adapt to each learner’s goals, pace, and exam timelines.</p>
+        <p style="color:var(--muted)">We collaborate with educators to align content with syllabi and competency frameworks, so learners always study what matters most.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:1rem; margin:0 0 12px 0">At a glance</h3>
+        <div class="grid-2">
+          <div class="stat"><div style="font-size:12px; color:var(--muted)">Founded</div><div style="font-weight:700">2025</div></div>
+          <div class="stat"><div style="font-size:12px; color:var(--muted)">Focus</div><div style="font-weight:700">Personalized learning</div></div>
+          <div class="stat"><div style="font-size:12px; color:var(--muted)">Product</div><div style="font-weight:700">Web & Mobile app</div></div>
+          <div class="stat"><div style="font-size:12px; color:var(--muted)">Audience</div><div style="font-weight:700">Students & Educators</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Statement -->
+  <section id="problem">
+    <div class="container">
+      <div class="card">
+        <h2>Problem Statement</h2>
+        <p style="color:var(--muted)"><strong>Personalized Learning Resources & Exam Planner Application</strong> — Students struggle to find the right resources and build realistic study plans. Content is scattered, generic, and misaligned with exams; planning is manual and hard to sustain. This leads to procrastination, gaps in understanding, and exam stress.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section id="solution">
+    <div class="container grid-2">
+      <div>
+        <h2>Our Solution</h2>
+        <p style="color:var(--muted)">A single platform that recommends the most relevant study materials for each topic and auto‑builds an exam‑focused plan. The app balances learning and revision, tracks mastery, and adapts as you progress.</p>
+        <div style="display:grid; gap:12px; margin-top:12px">
+          <div class="feature"><div class="badge">✨</div><div>AI‑assisted curation ranks resources by quality, syllabus match, and difficulty.</div></div>
+          <div class="feature"><div class="badge">🗓️</div><div>Smart planner breaks syllabi into milestones with buffer days and reminders.</div></div>
+          <div class="feature"><div class="badge">📊</div><div>Progress analytics highlight weak areas and recommend targeted practice.</div></div>
+          <div class="feature"><div class="badge">🔒</div><div>Privacy‑first: your data stays yours; export or delete anytime.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:1rem; margin:0 0 10px 0">Sample Outcomes</h3>
+        <div class="grid-3">
+          <div class="stat"><strong>+30%</strong><div style="font-size:12px; color:var(--muted)">syllabus coverage</div></div>
+          <div class="stat"><strong>↓ cramming</strong><div style="font-size:12px; color:var(--muted)">via spaced revision</div></div>
+          <div class="stat"><strong>↑ confidence</strong><div style="font-size:12px; color:var(--muted)">with mastery tracking</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <h2>Key Features</h2>
+      <div class="grid-3" style="margin-top:16px">
+        <div class="card"><div class="feature"><div class="badge">📘</div><div><strong>Personalized Resources</strong><br><span style="color:var(--muted)">Topic‑level recommendations ranked by relevance and difficulty.</span></div></div></div>
+        <div class="card"><div class="feature"><div class="badge">🗓️</div><div><strong>Exam Planner</strong><br><span style="color:var(--muted)">Auto milestones, buffer days, and reminders. Calendar sync ready.</span></div></div></div>
+        <div class="card"><div class="feature"><div class="badge">🧭</div><div><strong>Syllabus Mapping</strong><br><span style="color:var(--muted)">Aligns to board/university/exam frameworks.</span></div></div></div>
+        <div class="card"><div class="feature"><div class="badge">📊</div><div><strong>Insights & Analytics</strong><br><span style="color:var(--muted)">Mastery scores, streaks, time‑on‑task, weak‑topic alerts.</span></div></div></div>
+        <div class="card"><div class="feature"><div class="badge">⏲️</div><div><strong>Spaced Revision</strong><br><span style="color:var(--muted)">Cyclic reviews to retain concepts long‑term.</span></div></div></div>
+        <div class="card"><div class="feature"><div class="badge">🔒</div><div><strong>Privacy & Control</strong><br><span style="color:var(--muted)">Export data, control sharing, one‑click delete.</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <h2>How it works</h2>
+      <div class="grid-3" style="margin-top:16px">
+        <div class="card"><strong style="display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--brand)">1</strong><div style="margin-top:8px"><strong>Set your goal</strong><br><span style="color:var(--muted)">Choose exam, subjects, and target date. We map your syllabus.</span></div></div>
+        <div class="card"><strong style="display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--brand)">2</strong><div style="margin-top:8px"><strong>Get your plan</strong><br><span style="color:var(--muted)">Balanced schedule and resources tailored to your level.</span></div></div>
+        <div class="card"><strong style="display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--brand)">3</strong><div style="margin-top:8px"><strong>Track & adapt</strong><br><span style="color:var(--muted)">Plan auto‑adjusts and surfaces revision sessions.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section id="cta">
+    <div class="container cta-band">
+      <div class="grid-2" style="align-items:center">
+        <div>
+          <h2 style="margin:0 0 6px 0">Start your personalized study journey</h2>
+          <p style="color:#eef">Create a plan in minutes. Bring your syllabus, pick your exam date, and let The Learn Spot do the heavy lifting.</p>
+        </div>
+        <div style="display:flex; gap:12px; justify-content:flex-end">
+          <a class="btn" href="#contact">Explore resources</a>
+          <a class="btn primary" href="index.html">Create my plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container grid-2">
+      <div>
+        <h2>Contact us</h2>
+        <p style="color:var(--muted)">Have questions or want a campus/teacher demo? Reach out — we’d love to help.</p>
+        <p><strong>Email:</strong> hello@thelearnspot.com</p>
+      </div>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>೧೦ನೇ ತರಗತಿ ಕನ್ನಡ - ಹಿಂದಿನ ವರ್ಷಗಳ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆಗಳು</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Baloo Tamma 2', cursive;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        .back-button-top {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button-top:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 60px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title h2 {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .paper-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            border: 3px solid transparent;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-15px) rotate(-2deg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: #6a1b9a;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(106, 27, 154, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .paper-info {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .paper-info strong {
+            color: #6a1b9a;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(106, 27, 154, 0.3);
+            font-size: 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(106, 27, 154, 0.5);
+            background: linear-gradient(135deg, #8e24aa, #6a1b9a);
+        }
+
+        .video-section {
+            margin-bottom: 50px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: #6a1b9a;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #6a1b9a;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-content {
+            padding: 30px;
+        }
+
+        .video-title {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .watch-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+        }
+
+        .watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(106, 27, 154, 0.5);
+        }
+
+        .tips-section {
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            border: 3px solid #6a1b9a;
+        }
+
+        .tips-section h2 {
+            color: #6a1b9a;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .tips-section ul {
+            list-style: none;
+            padding: 0;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tips-section li {
+            padding: 20px 20px 20px 60px;
+            background: linear-gradient(135deg, rgba(106, 27, 154, 0.05), rgba(142, 36, 170, 0.05));
+            border-radius: 15px;
+            color: #555;
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            border: 2px solid rgba(106, 27, 154, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tips-section li:hover {
+            transform: translateX(10px);
+            border-color: #6a1b9a;
+            background: linear-gradient(135deg, rgba(106, 27, 154, 0.1), rgba(142, 36, 170, 0.1));
+        }
+
+        .tips-section li:before {
+            content: '✓';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(106, 27, 154, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                margin-top: 70px;
+            }
+
+            .header {
+                padding: 35px 25px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-thumbnail {
+                height: 220px;
+            }
+
+            .tips-section {
+                padding: 35px 25px;
+            }
+
+            .tips-section ul {
+                grid-template-columns: 1fr;
+            }
+
+            .tips-section li {
+                font-size: 0.95rem;
+            }
+
+            .back-button-top {
+                top: 10px;
+                left: 10px;
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .paper-card:nth-child(odd) {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .paper-card:nth-child(even) {
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-button-top">⬅ ಹಿಂದಕ್ಕೆ</a>
+
+    <div class="container">
+        <div class="header">
+            <h1>📄 ಹಿಂದಿನ ವರ್ಷಗಳ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆಗಳು</h1>
+            <p>೧೦ನೇ ತರಗತಿ ಕನ್ನಡ ಬೋರ್ಡ್ ಪರೀಕ್ಷೆಗಳ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆಗಳೊಂದಿಗೆ ಅಭ್ಯಾಸ ಮಾಡಿ</p>
+        </div>
+
+        <div class="section-title">
+            <h2>📚 PDF ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆಗಳು</h2>
+        </div>
+
+        <div class="papers-grid">
+            <div class="paper-card">
+                <div class="year-badge">೨೦೨೪</div>
+                <div class="paper-info">
+                    <strong>ಪೂರ್ಣ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ</strong>
+                    ಗರಿಷ್ಠ ಅಂಕಗಳು: ೧೦೦<br>
+                    ಅವಧಿ: ೩ ಗಂಟೆಗಳು<br>
+                    ಕರ್ನಾಟಕ ಬೋರ್ಡ್
+                </div>
+                <a href="#" class="download-btn">📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">೨೦೨೩</div>
+                <div class="paper-info">
+                    <strong>ಪೂರ್ಣ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ</strong>
+                    ಗರಿಷ್ಠ ಅಂಕಗಳು: ೧೦೦<br>
+                    ಅವಧಿ: ೩ ಗಂಟೆಗಳು<br>
+                    ಕರ್ನಾಟಕ ಬೋರ್ಡ್
+                </div>
+                <a href="#" class="download-btn">📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">೨೦೨೨</div>
+                <div class="paper-info">
+                    <strong>ಪೂರ್ಣ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ</strong>
+                    ಗರಿಷ್ಠ ಅಂಕಗಳು: ೧೦೦<br>
+                    ಅವಧಿ: ೩ ಗಂಟೆಗಳು<br>
+                    ಕರ್ನಾಟಕ ಬೋರ್ಡ್
+                </div>
+                <a href="#" class="download-btn">📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">೨೦೨೧</div>
+                <div class="paper-info">
+                    <strong>ಪೂರ್ಣ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ</strong>
+                    ಗರಿಷ್ಠ ಅಂಕಗಳು: ೧೦೦<br>
+                    ಅವಧಿ: ೩ ಗಂಟೆಗಳು<br>
+                    ಕರ್ನಾಟಕ ಬೋರ್ಡ್
+                </div>
+                <a href="#" class="download-btn">📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">೨೦೨೦</div>
+                <div class="paper-info">
+                    <strong>ಪೂರ್ಣ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ</strong>
+                    ಗರಿಷ್ಠ ಅಂಕಗಳು: ೧೦೦<br>
+                    ಅವಧಿ: ೩ ಗಂಟೆಗಳು<br>
+                    ಕರ್ನಾಟಕ ಬೋರ್ಡ್
+                </div>
+                <a href="#" class="download-btn">📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">೨೦೧೯</div>
+                <div class="paper-info">
+                    <strong>ಪೂರ್ಣ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ</strong>
+                    ಗರಿಷ್ಠ ಅಂಕಗಳು: ೧೦೦<br>
+                    ಅವಧಿ: ೩ ಗಂಟೆಗಳು<br>
+                    ಕರ್ನಾಟಕ ಬೋರ್ಡ್
+                </div>
+                <a href="#" class="download-btn">📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</a>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <div class="section-title">
+                <h2>🎥 ಕನ್ನಡ ವ್ಯಾಕರಣ ವೀಡಿಯೋ ಸಂಪನ್ಮೂಲಗಳು</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">ಕನ್ನಡ ಸಾಹಿತ್ಯದ ಇತಿಹಾಸ</div>
+                        <div class="video-description">ಆದಿಕಾಲದಿಂದ ಆಧುನಿಕ ಕಾಲದವರೆಗಿನ ಕನ್ನಡ ಸಾಹಿತ್ಯದ ಪ್ರಯಾಣ</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ ವೀಡಿಯೋ ವೀಕ್ಷಿಸಿ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h2>💡 ಪರೀಕ್ಷೆಗೆ ತಯಾರಿಯ ಸಲಹೆಗಳು</h2>
+            <ul>
+                <li>ಹಿಂದಿನ ವರ್ಷಗಳ ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆಗಳನ್ನು ನಿಗದಿತ ಸಮಯದಲ್ಲಿ ಪರಿಹರಿಸಿ</li>
+                <li>ವ್ಯಾಕರಣ ನಿಯಮಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ</li>
+                <li>ಗದ್ಯ ಮತ್ತು ಪದ್ಯಗಳ ಸಾರಾಂಶವನ್ನು ಬರೆಯುವ ಅಭ್ಯಾಸ ಮಾಡಿ</li>
+                <li>ಪ್ರಮುಖ ಲೇಖಕರು ಮತ್ತು ಕವಿಗಳ ಬಗ್ಗೆ ತಿಳಿದುಕೊಳ್ಳಿ</li>
+                <li>ನಿಯಮಿತವಾಗಿ ಕನ್ನಡ ಪತ್ರಿಕೆಗಳನ್ನು ಓದುವ ಅಭ್ಯಾಸ ಮಾಡಿ</li>
+                <li>ಪತ್ರ ಬರೆಯುವಿಕೆ ಮತ್ತು ಪ್ರಬಂಧ ಬರೆಯುವಿಕೆಯನ್ನು ಅಭ್ಯಾಸ ಮಾಡಿ</li>
+                <li>ವಚನಗಳು ಮತ್ತು ನುಡಿಗಟ್ಟುಗಳನ್ನು ಅರ್ಥ ಸಹಿತ ಕಂಠಪಾಠ ಮಾಡಿ</li>
+                <li>ಸ್ನೇಹಿತರೊಂದಿಗೆ ಗುಂಪು ಅಧ್ಯಯನ ಮಾಡಿ</li>
+                <li>ಪ್ರತಿ ವಿಭಾಗಕ್ಕೆ ಸಮಯ ನಿಗದಿ ಮಾಡಿ ಬರೆಯುವ ಅಭ್ಯಾಸ ಮಾಡಿ</li>
+                <li>ಶಿಕ್ಷಕರ ಮಾರ್ಗದರ್ಶನ ಪಡೆಯಿರಿ ಮತ್ತು ಸಂದೇಹಗಳನ್ನು ಸ್ಪಷ್ಟಪಡಿಸಿಕೊಳ್ಳಿ</li>
+                <li>ಉತ್ತರ ಬರೆಯುವಾಗ ಸ್ಪಷ್ಟ ಮತ್ತು ಸುಸಂಬದ್ಧವಾಗಿರಲಿ</li>
+                <li>ಪರೀಕ್ಷಾ ಮಾದರಿ ಮತ್ತು ಅಂಕಗಳ ಹಂಚಿಕೆಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಿ</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html><div class="video-title">ಸಂಧಿ - ಸಂಪೂರ್ಣ ವಿವರಣೆ</div>
+                        <div class="video-description">ಸ್ವರ ಸಂಧಿ, ವ್ಯಂಜನ ಸಂಧಿ ಮತ್ತು ವಿಸರ್ಗ ಸಂಧಿಯ ನಿಯಮಗಳು ಮತ್ತು ಉದಾಹರಣೆಗಳು</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ ವೀಡಿಯೋ ವೀಕ್ಷಿಸಿ</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">ಸಮಾಸ - ವಿವರಣಾತ್ಮಕ ಅಧ್ಯಯನ</div>
+                        <div class="video-description">ತತ್ಪುರುಷ, ದ್ವಂದ್ವ, ಬಹುವ್ರೀಹಿ ಮತ್ತು ಇತರ ಸಮಾಸಗಳ ಸಂಪೂರ್ಣ ವಿವರಣೆ</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ ವೀಡಿಯೋ ವೀಕ್ಷಿಸಿ</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">ಅಲಂಕಾರಗಳು - ಸಂಪೂರ್ಣ ಪಾಠ</div>
+                        <div class="video-description">ಉಪಮೆ, ರೂಪಕ, ಉತ್ಪ್ರೇಕ್ಷೆ ಮತ್ತು ಇತರ ಅಲಂಕಾರಗಳ ವಿವರಣೆ</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ ವೀಡಿಯೋ ವೀಕ್ಷಿಸಿ</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">ವಚನಗಳು ಮತ್ತು ನುಡಿಗಟ್ಟುಗಳು</div>
+                        <div class="video-description">ಪ್ರಮುಖ ವಚನಕಾರರು ಮತ್ತು ಅವರ ವಚನಗಳ ಅರ್ಥ ವಿವರಣೆ</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ ವೀಡಿಯೋ ವೀಕ್ಷಿಸಿ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <div class="section-title">
+                <h2>📖 ಸಾಹಿತ್ಯ ವೀಡಿಯೋ ಸಂಪನ್ಮೂಲಗಳು</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">ಗದ್ಯ ಪಾಠಗಳ ಸಾರಾಂಶ</div>
+                        <div class="video-description">ಎಲ್ಲಾ ಗದ್ಯ ಪಾಠಗಳ ವಿವರಣಾತ್ಮಕ ಸಾರಾಂಶ ಮತ್ತು ಪ್ರಮುಖ ಅಂಶಗಳು</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ ವೀಡಿಯೋ ವೀಕ್ಷಿಸಿ</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">ಪದ್ಯ ಪಾಠಗಳ ವಿಶ್ಲೇಷಣೆ</div>
+                        <div class="video-description">ಕವಿತೆಗಳ ಅರ್ಥ, ಭಾವಾರ್ಥ ಮತ್ತು ಕವಿಯ ಉದ್ದೇಶದ ವಿವರಣೆ</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ ವೀಡಿಯೋ ವೀಕ್ಷಿಸಿ</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">ಪಾತ್ರ ವಿವರಣೆ ಮತ್ತು ವಿಶ್ಲೇಷಣೆ</div>
+                        <div class="video-description">ಪ್ರಮುಖ ಪಾತ್ರಗಳ ಗುಣಲಕ್ಷಣಗಳು ಮತ್ತು ಅವರ ಪಾತ್ರದ ಮಹತ್ವ</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ ವೀಡಿಯೋ ವೀಕ್ಷಿಸಿ</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">

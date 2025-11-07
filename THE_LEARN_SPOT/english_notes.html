@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10th Class - English Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        .back-button-top {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button-top:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-button-top:active {
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            font-weight: 700;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #e3f2fd;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.15rem;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        thead th {
+            padding: 18px 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border: 2px solid #5568d3;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        tbody tr:hover {
+            background: linear-gradient(135deg, #f5f7ff 0%, #f9f0ff 100%);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        tbody td {
+            padding: 18px 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            font-weight: 600;
+        }
+
+        .serial-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .lesson-name {
+            text-align: left;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.5);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .quiz-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h2 {
+            color: #667eea;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .quiz-topic {
+            background: #f5f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+
+        .quiz-topic h3 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question p {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-left: 20px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e0e0e0;
+        }
+
+        .option-label:hover {
+            background: #f0f0f0;
+            border-color: #667eea;
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .submit-quiz-btn {
+            display: block;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-quiz-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .submit-quiz-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            display: none;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result-section h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-section p {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .retry-btn {
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #e3f2fd;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .table-wrapper {
+                padding: 15px;
+            }
+
+            table {
+                font-size: 1rem;
+            }
+
+            thead th {
+                padding: 12px 8px;
+                font-size: 1rem;
+            }
+
+            tbody td {
+                padding: 12px 8px;
+            }
+
+            .lesson-name {
+                font-size: 1rem;
+            }
+
+            .download-btn {
+                padding: 10px 15px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .table-wrapper {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            thead th {
+                padding: 10px 5px;
+                font-size: 0.9rem;
+            }
+
+            tbody td {
+                padding: 10px 5px;
+            }
+
+            .download-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+
+            .back-button-top {
+                top: 10px;
+                left: 10px;
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .table-wrapper {
+            animation: fadeIn 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-button-top">⬅ Back</a>
+
+    <div class="container">
+        <div class="header">
+            <h1>📚 10th Class English Notes</h1>
+            <p class="subtitle">Complete Prose & Poetry Lessons with PDF Downloads</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Lesson Name</th>
+                        <th>Download PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Prose Lessons -->
+                    <tr>
+                        <td class="serial-number">1</td>
+                        <td class="lesson-name">A Letter to God (G.L. Fuentes)</td>
+                        <td>
+                            <a href="https://ncert.nic.in/textbook/pdf/jeff101.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">2</td>
+                        <td class="lesson-name">Nelson Mandela: Long Walk to Freedom</td>
+                        <td>
+                            <a href="https://example.com/mandela.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">3</td>
+                        <td class="lesson-name">Two Stories About Flying (Liam O'Flaherty & Frederick Forsyth)</td>
+                        <td>
+                            <a href="https://example.com/flying-stories.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">4</td>
+                        <td class="lesson-name">From the Diary of Anne Frank</td>
+                        <td>
+                            <a href="https://example.com/anne-frank.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">5</td>
+                        <td class="lesson-name">The Hundred Dresses (Part I & II) - Eleanor Estes</td>
+                        <td>
+                            <a href="https://example.com/hundred-dresses.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">6</td>
+                        <td class="lesson-name">Glimpses of India (Lucio Rodrigues, Arup Kumar Datta, Lokesh Abrol)</td>
+                        <td>
+                            <a href="https://example.com/glimpses-india.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">7</td>
+                        <td class="lesson-name">Mijbil the Otter (Gavin Maxwell)</td>
+                        <td>
+                            <a href="https://example.com/mijbil-otter.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">8</td>
+                        <td class="lesson-name">Madam Rides the Bus (Vallikkannan)</td>
+                        <td>
+                            <a href="https://example.com/madam-rides-bus.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">9</td>
+                        <td class="lesson-name">The Sermon at Benares (Betty Renshaw)</td>
+                        <td>
+                            <a href="https://example.com/sermon-benares.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">10</td>
+                        <td class="lesson-name">The Proposal (Anton Chekhov)</td>
+                        <td>
+                            <a href="https://example.com/proposal.pdf" class="download-btn" download>
+                                📥 Download PDF
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="quiz-section">
+            <div class="quiz-header">
+                <h2>📝 Test Your Knowledge</h2>
+                <p class="subtitle">Answer questions from all lessons</p>
+            </div>
+
+            <form id="quizForm">
+                <!-- Topic 1: A Letter to God -->
+                <div class="quiz-topic">
+                    <h3>1. A Letter to God</h3>
+                    
+                    <div class="question">
+                        <p>1.1 Who wrote a letter to God?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q1_1" value="wrong">
+                                <span>The Postmaster</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q1_1" value="correct">
+                                <span>Lencho</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q1_1" value="wrong">
+                                <span>The Priest</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>1.2 What destroyed Lencho's crops?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q1_2" value="wrong">
+                                <span>Flood</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q1_2" value="correct">
+                                <span>Hailstorm</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q1_2" value="wrong">
+                                <span>Drought</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 2: Nelson Mandela -->
+                <div class="quiz-topic">
+                    <h3>2. Nelson Mandela: Long Walk to Freedom</h3>
+                    
+                    <div class="question">
+                        <p>2.1 When did Nelson Mandela become President of South Africa?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q2_1" value="wrong">
+                                <span>1990</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q2_1" value="correct">
+                                <span>1994</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q2_1" value="wrong">
+                                <span>1980</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>2.2 What did Mandela fight against?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q2_2" value="correct">
+                                <span>Apartheid</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q2_2" value="wrong">
+                                <span>Poverty</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q2_2" value="wrong">
+                                <span>Illiteracy</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 3: Two Stories About Flying -->
+                <div class="quiz-topic">
+                    <h3>3. Two Stories About Flying</h3>
+                    
+                    <div class="question">
+                        <p>3.1 In "His First Flight", what was the young seagull afraid of?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q3_1" value="wrong">
+                                <span>Water</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q3_1" value="correct">
+                                <span>Flying</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q3_1" value="wrong">
+                                <span>Heights</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>3.2 In "Black Aeroplane", what disappeared mysteriously?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q3_2" value="wrong">
+                                <span>The pilot</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q3_2" value="correct">
+                                <span>The black aeroplane that guided him</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q3_2" value="wrong">
+                                <span>The fuel</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 4: Anne Frank -->
+                <div class="quiz-topic">
+                    <h3>4. From the Diary of Anne Frank</h3>
+                    
+                    <div class="question">
+                        <p>4.1 What did Anne Frank name her diary?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q4_1" value="correct">
+                                <span>Kitty</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q4_1" value="wrong">
+                                <span>Betty</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q4_1" value="wrong">
+                                <span>Mary</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>4.2 Why did Anne Frank and her family go into hiding?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q4_2" value="wrong">
+                                <span>Financial problems</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q4_2" value="correct">
+                                <span>Nazi persecution of Jews</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q4_2" value="wrong">
+                                <span>War</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 5: The Hundred Dresses -->
+                <div class="quiz-topic">
+                    <h3>5. The Hundred Dresses</h3>
+                    
+                    <div class="question">
+                        <p>5.1 Who was the main character who claimed to have hundred dresses?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q5_1" value="wrong">
+                                <span>Maddie</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q5_1" value="correct">
+                                <span>Wanda Petronski</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q5_1" value="wrong">
+                                <span>Peggy</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>5.2 What did Wanda actually have?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q5_2" value="wrong">
+                                <span>Hundred real dresses</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q5_2" value="correct">
+                                <span>Hundred drawings of dresses</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q5_2" value="wrong">
+                                <span>No dresses</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 6: Glimpses of India -->
+                <div class="quiz-topic">
+                    <h3>6. Glimpses of India</h3>
+                    
+                    <div class="question">
+                        <p>6.1 Which state is famous for its bread-making tradition in the story "A Baker from Goa"?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q6_1" value="correct">
+                                <span>Goa</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q6_1" value="wrong">
+                                <span>Kerala</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q6_1" value="wrong">
+                                <span>Punjab</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>6.2 What is Coorg famous for?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q6_2" value="wrong">
+                                <span>Tea plantations</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q6_2" value="correct">
+                                <span>Coffee plantations</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q6_2" value="wrong">
+                                <span>Spice gardens</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 7: Mijbil the Otter -->
+                <div class="quiz-topic">
+                    <h3>7. Mijbil the Otter</h3>
+                    
+                    <div class="question">
+                        <p>7.1 Where did the author get Mijbil from?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q7_1" value="wrong">
+                                <span>India</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q7_1" value="correct">
+                                <span>Iraq</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q7_1" value="wrong">
+                                <span>Africa</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>7.2 What was Mijbil's favorite toy?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q7_2" value="wrong">
+                                <span>A ball</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q7_2" value="correct">
+                                <span>A rubber ball and marbles</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q7_2" value="wrong">
+                                <span>A stick</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 8: Madam Rides the Bus -->
+                <div class="quiz-topic">
+                    <h3>8. Madam Rides the Bus</h3>
+                    
+                    <div class="question">
+                        <p>8.1 What was Valli's full name?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q8_1" value="correct">
+                                <span>Valliammai</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q8_1" value="wrong">
+                                <span>Vallika</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q8_1" value="wrong">
+                                <span>Valli</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>8.2 How old was Valli?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q8_2" value="wrong">
+                                <span>Seven years old</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q8_2" value="correct">
+                                <span>Eight years old</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q8_2" value="wrong">
+                                <span>Nine years old</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 9: The Sermon at Benares -->
+                <div class="quiz-topic">
+                    <h3>9. The Sermon at Benares</h3>
+                    
+                    <div class="question">
+                        <p>9.1 Who gave the sermon at Benares?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q9_1" value="wrong">
+                                <span>Mahavira</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q9_1" value="correct">
+                                <span>Gautama Buddha</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q9_1" value="wrong">
+                                <span>Jesus Christ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>9.2 What did Kisa Gotami realize through Buddha's lesson?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q9_2" value="wrong">
+                                <span>Life is eternal</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q9_2" value="correct">
+                                <span>Death is common to all and inevitable</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q9_2" value="wrong">
+                                <span>Grief can be cured</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 10: The Proposal -->
+                <div class="quiz-topic">
+                    <h3>10. The Proposal</h3>
+                    
+                    <div class="question">
+                        <p>10.1 Who is the author of "The Proposal"?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q10_1" value="wrong">
+                                <span>Shakespeare</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q10_1" value="correct">
+                                <span>Anton Chekhov</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q10_1" value="wrong">
+                                <span>Oscar Wilde</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>10.2 What was Lomov trying to do when he visited Chubukov's house?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q10_2" value="wrong">
+                                <span>Borrow money</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q10_2" value="correct">
+                                <span>Propose marriage to Natalya</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q10_2" value="wrong">
+                                <span>Discuss land issues</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="submit-quiz-btn" onclick="submitQuiz()">Submit Quiz</button>
+            </form>
+
+            <!-- Result Section -->
+            <div id="resultSection" class="result-section">
+                <h3>🎉 Your Results</h3>
+                <div class="score-display" id="scoreDisplay"></div>
+                <p id="resultMessage"></p>
+                <p id="scorePercentage"></p>
+                <button class="retry-btn" onclick="retryQuiz()">Retry Quiz</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>💡 Tip: Download PDFs for offline access and better study experience</p>
+            <p>&copy; 2025 SmartLearn Planner - Your Learning Companion</p>
+        </div>
+    </div>
+
+    <script>
+        // Add click tracking for downloads
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                console.log('Downloading:', this.href);
+                // You can add analytics tracking here
+            });
+        });
+
+        // Quiz functionality
+        function submitQuiz() {
+            const form = document.getElementById('quizForm');
+            const resultSection = document.getElementById('resultSection');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const resultMessage = document.getElementById('resultMessage');
+            const scorePercentage = document.getElementById('scorePercentage');
+
+            // Total questions
+            const totalQuestions = 20;
+            let correctAnswers = 0;
+
+            // Check all answers
+            const questions = [
+                'q1_1', 'q1_2', 'q2_1', 'q2_2', 'q3_1', 'q3_2', 
+                'q4_1', 'q4_2', 'q5_1', 'q5_2', 'q6_1', 'q6_2', 
+                'q7_1', 'q7_2', 'q8_1', 'q8_2', 'q9_1', 'q9_2',
+                'q10_1', 'q10_2'
+            ];
+
+            let allAnswered = true;
+            questions.forEach(question => {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                } else if (selected.value === 'correct') {
+                    correctAnswers++;
+                }
+            });
+
+            if (!allAnswered) {
+                alert('Please answer all questions!');
+                return;
+            }
+
+            // Calculate percentage
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+
+            // Display results
+            scoreDisplay.textContent = `${correctAnswers} / ${totalQuestions}`;
+            scorePercentage.textContent = `Percentage: ${percentage}%`;
+
+            // Result message based on score
+            let message = '';
+            if (percentage >= 90) {
+                message = '🌟 Excellent! You have mastered the lessons!';
+            } else if (percentage >= 70) {
+                message = '👍 Great job! You have good understanding!';
+            } else if (percentage >= 50) {
+                message = '👌 Good effort! Keep practicing!';
+            } else {
+                message = '💪 Don\'t give up! Review the lessons and try again!';
+            }
+
+            resultMessage.textContent = message;
+            resultSection.classList.add('show');
+
+            // Scroll to results
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function retryQuiz() {
+            // Reset form
+            document.getElementById('quizForm').reset();
+            
+            // Hide results
+            document.getElementById('resultSection').classList.remove('show');
+            
+            // Scroll to top of quiz
+            document.querySelector('.quiz-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Page load animation
+        console.log('English Notes page loaded successfully');
+    </script>
+</body>
+</html>
