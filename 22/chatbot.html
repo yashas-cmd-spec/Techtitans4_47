@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Learn Spot - Your Learning Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 800px;
+            height: 90vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .chat-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+
+        .bot .message-content {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .user .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .course-card, .exam-card {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .course-card h4, .exam-card h4 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .course-card p, .exam-card p {
+            font-size: 13px;
+            color: #666;
+            margin: 3px 0;
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+
+        .send-button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .send-button:hover {
+            transform: scale(1.05);
+        }
+
+        .send-button:active {
+            transform: scale(0.95);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 10px;
+            background: white;
+            border-radius: 18px;
+            width: 60px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>🎓The Learn Spot</h1>
+            <p>Your Personalized Learning & Exam Planning Assistant</p>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-content">
+                    Hello! I'm The Learn Spot, your educational assistant. 👋<br><br>
+                    I can help you with:<br>
+                    • Course recommendations based on your grade<br>
+                    • Competitive exam suggestions based on your percentage<br>
+                    • Study resources and exam planning<br><br>
+                    What would you like to know today?
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <input type="text" id="userInput" class="chat-input" placeholder="Type your message here..." />
+            <button onclick="sendMessage()" class="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+
+        let conversationState = {
+            awaitingGrade: false,
+            awaitingPercentage: false,
+            currentContext: null
+        };
+
+        const courseRecommendations = {
+            '9': [
+                { name: 'Foundation Science & Math', score: 95, description: 'Build strong fundamentals in core subjects', subjects: 'Physics, Chemistry, Math, Biology' },
+                { name: 'English Literature & Communication', score: 88, description: 'Enhance language and communication skills', subjects: 'English, Grammar, Creative Writing' },
+                { name: 'Computer Programming Basics', score: 92, description: 'Introduction to coding and logical thinking', subjects: 'Python, Scratch, Basic Algorithms' }
+            ],
+            '10': [
+                { name: 'STEM Foundation Course', score: 96, description: 'Advanced concepts for science stream', subjects: 'Advanced Math, Physics, Chemistry' },
+                { name: 'Commerce & Business Studies', score: 89, description: 'Introduction to commerce and economics', subjects: 'Accountancy, Economics, Business Studies' },
+                { name: 'Humanities & Social Sciences', score: 87, description: 'History, geography, and social studies', subjects: 'History, Geography, Political Science' }
+            ],
+            '11': [
+                { name: 'JEE/NEET Preparation Track', score: 97, description: 'Intensive preparation for engineering/medical', subjects: 'Physics, Chemistry, Math/Biology' },
+                { name: 'Commerce with Accountancy', score: 91, description: 'CA/CS foundation track', subjects: 'Accountancy, Economics, Business Studies, Math' },
+                { name: 'Computer Science Specialization', score: 94, description: 'Advanced programming and CS concepts', subjects: 'C++, Data Structures, Computer Science' }
+            ],
+            '12': [
+                { name: 'Board Exam Excellence Program', score: 98, description: 'Score maximization for board exams', subjects: 'All core subjects with exam strategy' },
+                { name: 'Competitive Exam Crash Course', score: 96, description: 'Final year intensive prep for entrances', subjects: 'Subject-specific + Mock tests' },
+                { name: 'Skill Development & Career Readiness', score: 90, description: 'Prepare for college and career', subjects: 'Communication, Aptitude, Interview Skills' }
+            ]
+        };
+
+        const competitiveExams = {
+            highPerformers: [
+                { name: 'JEE Advanced', eligibility: '75%+', description: 'Premier engineering entrance for IITs', difficulty: 'Very High', scope: 'Top engineering colleges in India' },
+                { name: 'NEET UG', eligibility: '50%+', description: 'Medical entrance for MBBS/BDS', difficulty: 'High', scope: 'Medical and dental colleges nationwide' },
+                { name: 'KVPY', eligibility: '75%+', description: 'Science scholarship and research aptitude', difficulty: 'High', scope: 'Scholarship + Research opportunities' }
+            ],
+            averagePerformers: [
+                { name: 'JEE Main', eligibility: '45%+', description: 'Engineering entrance for NITs, IIITs', difficulty: 'Moderate-High', scope: 'Central and state engineering colleges' },
+                { name: 'BITSAT', eligibility: '60%+', description: 'BITS Pilani entrance exam', difficulty: 'Moderate', scope: 'BITS campuses across India' },
+                { name: 'State Engineering Entrances', eligibility: '45%+', description: 'State-level engineering exams', difficulty: 'Moderate', scope: 'State government colleges' }
+            ],
+            lowPerformers: [
+                { name: 'Diploma Courses (Polytechnic)', eligibility: '35%+', description: 'Technical diploma programs', difficulty: 'Low-Moderate', scope: 'Polytechnic colleges, lateral entry to BE' },
+                { name: 'Vocational Training Programs', eligibility: '35%+', description: 'Skill-based certification courses', difficulty: 'Low', scope: 'Job-ready skills in various trades' },
+                { name: 'Foundation Courses', eligibility: '33%+', description: 'Bridge courses for improvement', difficulty: 'Low', scope: 'Prepare for future competitive exams' }
+            ],
+            commerce: [
+                { name: 'CA Foundation', eligibility: '50%+', description: 'Chartered Accountancy entrance', difficulty: 'High', scope: 'CA career path' },
+                { name: 'CS Foundation', eligibility: '50%+', description: 'Company Secretary entrance', difficulty: 'Moderate-High', scope: 'CS career path' },
+                { name: 'CLAT', eligibility: '45%+', description: 'Law entrance for NLUs', difficulty: 'High', scope: 'National Law Universities' }
+            ],
+            humanities: [
+                { name: 'CLAT', eligibility: '45%+', description: 'Law entrance for NLUs', difficulty: 'High', scope: 'National Law Universities' },
+                { name: 'CUET', eligibility: '50%+', description: 'Central universities entrance', difficulty: 'Moderate', scope: 'Central universities for various programs' },
+                { name: 'Hotel Management Entrances', eligibility: '50%+', description: 'Hospitality management programs', difficulty: 'Moderate', scope: 'Hotel management institutes' }
+            ]
+        };
+
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            userInput.value = '';
+
+            setTimeout(() => processMessage(message), 500);
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function processMessage(message) {
+            const lowerMsg = message.toLowerCase();
+
+            if (conversationState.awaitingGrade) {
+                handleGradeInput(message);
+                return;
+            }
+
+            if (conversationState.awaitingPercentage) {
+                handlePercentageInput(message);
+                return;
+            }
+
+            if (lowerMsg.includes('course') || lowerMsg.includes('recommend') || lowerMsg.includes('suggest course') || lowerMsg.includes('best course')) {
+                conversationState.awaitingGrade = true;
+                conversationState.currentContext = 'course';
+                addMessage('Great! I can suggest the best courses for you. 📚<br><br>Which grade are you currently in? (9, 10, 11, or 12)', 'bot');
+            } else if (lowerMsg.includes('exam') || lowerMsg.includes('competitive') || lowerMsg.includes('entrance')) {
+                conversationState.awaitingGrade = true;
+                conversationState.currentContext = 'exam';
+                addMessage('I can help you find the right competitive exams! 🎯<br><br>First, which grade are you in? (9, 10, 11, or 12)', 'bot');
+            } else if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey')) {
+                addMessage('Hello! How can I assist you today? 😊<br><br>You can ask me about:<br>• Course recommendations<br>• Competitive exam suggestions', 'bot');
+            } else if (lowerMsg.includes('help')) {
+                addMessage('I\'m here to help! 🌟<br><br>Try asking:<br>• "Suggest best courses for me"<br>• "Which competitive exams should I take?"<br>• "Recommend courses based on my grade"', 'bot');
+            } else {
+                addMessage('I can help you with course recommendations and competitive exam suggestions. What would you like to know? 🤔', 'bot');
+            }
+        }
+
+        function handleGradeInput(grade) {
+            const gradeNum = grade.trim();
+            
+            if (!['9', '10', '11', '12'].includes(gradeNum)) {
+                addMessage('Please enter a valid grade (9, 10, 11, or 12). 📝', 'bot');
+                return;
+            }
+
+            if (conversationState.currentContext === 'course') {
+                showCourseRecommendations(gradeNum);
+                conversationState.awaitingGrade = false;
+                conversationState.currentContext = null;
+            } else if (conversationState.currentContext === 'exam') {
+                conversationState.awaitingGrade = false;
+                conversationState.awaitingPercentage = true;
+                conversationState.userGrade = gradeNum;
+                addMessage('Perfect! Now, what is your current percentage or expected percentage in Grade ' + gradeNum + '? 📊<br><br>(Enter a number between 0-100)', 'bot');
+            }
+        }
+
+        function handlePercentageInput(percentage) {
+            const percent = parseFloat(percentage);
+            
+            if (isNaN(percent) || percent < 0 || percent > 100) {
+                addMessage('Please enter a valid percentage between 0 and 100. 🔢', 'bot');
+                return;
+            }
+
+            showExamRecommendations(percent, conversationState.userGrade);
+            conversationState.awaitingPercentage = false;
+            conversationState.userGrade = null;
+        }
+
+        function showCourseRecommendations(grade) {
+            const courses = courseRecommendations[grade];
+            let response = `<strong>Top Course Recommendations for Grade ${grade}</strong><br><br>Based on your grade, here are the best courses with their performance scores:<br><br>`;
+
+            courses.forEach((course, index) => {
+                response += `<div class="course-card">
+                    <h4>${index + 1}. ${course.name} (Score: ${course.score}/100)</h4>
+                    <p><strong>Description:</strong> ${course.description}</p>
+                    <p><strong>Subjects:</strong> ${course.subjects}</p>
+                </div>`;
+            });
+
+            response += '<br>Would you like to know about competitive exams as well? 🎓';
+            addMessage(response, 'bot');
+        }
+
+        function showExamRecommendations(percentage, grade) {
+            let exams = [];
+            let category = '';
+            let message = `<strong>Competitive Exam Recommendations</strong><br><br>Based on your ${percentage}% in Grade ${grade}:<br><br>`;
+
+            if (percentage >= 75) {
+                exams = competitiveExams.highPerformers;
+                category = 'High Performer';
+                message += `🌟 Excellent performance! You're eligible for top-tier exams:<br><br>`;
+            } else if (percentage >= 60) {
+                exams = competitiveExams.averagePerformers;
+                category = 'Good Performer';
+                message += `👍 Good performance! Here are suitable competitive exams:<br><br>`;
+            } else if (percentage >= 45) {
+                exams = competitiveExams.averagePerformers;
+                category = 'Average Performer';
+                message += `📚 You have good options available:<br><br>`;
+            } else {
+                exams = competitiveExams.lowPerformers;
+                category = 'Developing Performer';
+                message += `💪 Build your foundation with these options:<br><br>`;
+            }
+
+            exams.forEach((exam, index) => {
+                message += `<div class="exam-card">
+                    <h4>${index + 1}. ${exam.name}</h4>
+                    <p><strong>Eligibility:</strong> ${exam.eligibility}</p>
+                    <p><strong>Description:</strong> ${exam.description}</p>
+                    <p><strong>Difficulty:</strong> ${exam.difficulty}</p>
+                    <p><strong>Scope:</strong> ${exam.scope}</p>
+                </div>`;
+            });
+
+            message += '<br>💡 <strong>Tip:</strong> Start preparing early and focus on building strong fundamentals!<br><br>Need more information? Just ask! 😊';
+            
+            addMessage(message, 'bot');
+        }
+    </script>
+</body>
+</html>
